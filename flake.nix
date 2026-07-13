@@ -46,6 +46,12 @@
         hostname = "laptop";
         users = [ "eve" ];
       };
+
+      # vm : mono-utilisateur (eve). Ajoutez "bob" si besoin.
+      vm = mkHost {
+        hostname = "vm";
+        users = [ "eve" ];
+      };
     };
   };
 }

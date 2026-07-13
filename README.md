@@ -60,6 +60,8 @@ mount /dev/disk/by-label/BOOT /mnt/boot     # (for UEFI systems only)
    puis remplacer le fichier placeholder correspondant dans
    `hosts/<hostname>/hardware-configuration.nix`.
 
+1. git clone https://github.com/paredesg/nix-config.git /mnt/etc/nixos/nix-config
+
 2. Générer les mots de passe hashés (référencés dans `modules/nixos/users.nix`) :
    ```
 nix-shell -p mkpasswd --run "mkpasswd -m sha-512"

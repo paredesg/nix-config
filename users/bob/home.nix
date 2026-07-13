@@ -8,6 +8,6 @@
   home.username = "bob";
   home.homeDirectory = "/home/bob";
 
-  programs.git.userName = "Bob";
-  programs.git.userEmail = "bob@example.com";
+#  programs.git.userName = "Bob";
+#  programs.git.userEmail = "bob@example.com";
 }
