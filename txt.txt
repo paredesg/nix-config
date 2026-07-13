@@ -1,3 +1,8 @@
 sudo mkdir -p /mnt/home/eve
 sudo git clone https://github.com/paredesg/nix-config.git /mnt/etc/nixos
 # puis recopier hardware-configuration.nix et secrets/ comme aux étapes 2 et 3
+
+
+/mnt/etc/nixos/configuration.nix
+/mnt/etc/nixos/hardware-configuration.nix
+
