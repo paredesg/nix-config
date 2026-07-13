@@ -5,7 +5,7 @@
     windowManager.qtile.enable = true;
   };
 
-  services.displayManager.sddm.enable = true;
+  services.displayManager.ly.enable = true;
   services.displayManager.defaultSession = "qtile";
 
   security.polkit.enable = true;
