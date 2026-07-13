@@ -10,19 +10,32 @@ Home Manager et Qtile comme window manager.
 3 ip a (verif IP)
 
 ## Partitioning
-lsblk
+lsblk -o name,size,fstype,label,model,serial,mountpoint 
 
+nvme:
 parted /dev/nvme1n1 -- mklabel gpt
 parted /dev/nvme1n1 -- mkpart ESP fat32 1MB 512MB
 parted /dev/nvme1n1 -- set 1 esp on
 parted /dev/nvme1n1 -- mkpart primary 512MB -8GB
 
+sda:
+parted /dev/sda -- mklabel gpt
+parted /dev/sda -- mkpart ESP fat32 1MB 512MB
+parted /dev/sda -- set 1 esp on
+parted /dev/sda -- mkpart primary 512MB -8GB
+
 lsblk
 
 ## Format
 
-mkfs.fat -F 32 -n BOOT /dev/nvme1n1p1
-mkfs.ext4 -L NIXOS /dev/nvme1n1p2
+nvme:
+mkfs.fat -F 32 -n BOOT /dev/nvme0n1p1
+mkfs.ext4 -L NIXOS /dev/nvme0n1p2
+
+sda:
+mkfs.fat -F 32 -n BOOT /dev/sda1
+mkfs.ext4 -L NIXOS /dev/sda2
+
 
 ## Mount
 
@@ -42,13 +55,22 @@ mount /dev/disk/by-label/BOOT /mnt/boot     # (for UEFI systems only)
 
 1. Générer le vrai `hardware-configuration.nix` sur chaque machine :
    ```
-   sudo nixos-generate-config --root /
+   nixos-generate-config --root /mnt
    ```
    puis remplacer le fichier placeholder correspondant dans
    `hosts/<hostname>/hardware-configuration.nix`.
 
 2. Générer les mots de passe hashés (référencés dans `modules/nixos/users.nix`) :
    ```
+nix-shell -p mkpasswd --run "mkpasswd -m sha-512"
+Exécutez-la deux fois (une pour eve, une pour bob), puis stockez le résultat hors du dépôt git, directement dans le système cible :
+
+sudo mkdir -p /mnt/etc/nixos/secrets
+echo '<hash_généré_pour_eve>' | sudo tee /mnt/etc/nixos/secrets/eve.hashedpassword
+echo '<hash_généré_pour_bob>' | sudo tee /mnt/etc/nixos/secrets/bob.hashedpassword
+sudo chmod 600 /mnt/etc/nixos/secrets/*.hashedpassword
+
+
    mkpasswd -m sha-512 > /etc/nixos/secrets/eve.hashedpassword
    mkpasswd -m sha-512 > /etc/nixos/secrets/bob.hashedpassword
    ```
@@ -71,6 +93,9 @@ sudo nixos-rebuild switch --flake ~/nix-config#aquarius
 
 # Sur laptop
 sudo nixos-rebuild switch --flake ~/nix-config#laptop
+
+# Sur vm
+sudo nixos-rebuild switch --flake ~/nix-config#vm
 ```
 
 ## Mise à jour des dépendances (nixpkgs, home-manager)
@@ -86,7 +111,8 @@ nix-config/
 ├── flake.nix
 ├── hosts/                # Config par machine (hardware + assemblage)
 │   ├── aquarius/
-│   └── laptop/
+│   ├── laptop/
+│   └── vm/
 ├── modules/
 │   ├── nixos/             # Modules système réutilisables
 │   │   └── desktop/qtile.nix
