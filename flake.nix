@@ -41,16 +41,16 @@
         users = [ "eve" "bob" ];
       };
 
-      # laptop : mono-utilisateur (eve). Ajoutez "bob" si besoin.
+      # laptop : partagé par eve et bob
       laptop = mkHost {
         hostname = "laptop";
-        users = [ "eve" ];
+        users = [ "eve" "bob" ];
       };
 
-      # vm : mono-utilisateur (eve). Ajoutez "bob" si besoin.
+      # vm : partagé par eve et bob
       vm = mkHost {
         hostname = "vm";
-        users = [ "eve" ];
+        users = [ "eve" "bob" ];
       };
     };
   };

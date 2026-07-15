@@ -51,13 +51,15 @@ df -h
 | Host      | Type    | Users        |
 |-----------|---------|--------------|
 | aquarius  | Desktop | eve, bob     |
-| laptop    | Laptop  | eve          |
-| vm        | Laptop  | eve          |
+| laptop    | Laptop  | eve, bob     |
+| vm        | Desktop | eve, bob     |
 
 ## Prérequis avant premier déploiement
 
 1. git clone https://github.com/paredesg/nix-config.git /mnt/etc/nixos/nix-config
    cp -r /mnt/etc/nixos/nix-config/* /mnt/etc/nixos/
+   nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hosts/aquarius/hardware-configuration.nix
+   nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hosts/laptop/hardware-configuration.nix
    nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hosts/vm/hardware-configuration.nix
    
 3. Générer les mots de passe hashés (référencés dans `modules/nixos/users.nix`) :

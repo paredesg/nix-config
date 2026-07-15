@@ -5,10 +5,10 @@
     ../../modules/nixos
   ];
 
-  networking.hostName = "laptop";
+  networking.hostName = "aquarius";
 
-  # Active TLP, upower, libinput, etc.
-  myHardware.isLaptop = true;
+  # aquarius est un poste fixe (desktop) : pas de gestion batterie/tactile
+  myHardware.isLaptop = false;
 
   system.stateVersion = "26.05";
 }

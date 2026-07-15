@@ -5,10 +5,10 @@
     ../../modules/nixos
   ];
 
-  networking.hostName = "vm";
+  networking.hostName = "laptop";
 
-  # aquarius est un poste fixe (desktop) : pas de gestion batterie/tactile
-  myHardware.isLaptop = false;
+  # laptop est un portable : gestion batterie/tactile
+  myHardware.isLaptop = true;
 
   system.stateVersion = "26.05";
 }
