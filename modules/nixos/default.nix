@@ -18,9 +18,6 @@
   i18n.defaultLocale = "fr_FR.UTF-8";
   console.keyMap = "fr";
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
 
   # Nettoyage automatique du store
   nix.gc = {
