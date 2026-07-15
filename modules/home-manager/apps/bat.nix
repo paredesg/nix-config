@@ -1,9 +1,9 @@
-{ config, ... }: {
-  home-manager.users.${config.user}.programs.bat = {
+{ pkgs, ... }: {
+  programs.bat = {
     enable = true;
     config = {
       plain = true;
-      theme = "gruvbox-dark";
+#      theme = "gruvbox-dark";
     };
   };
 }
