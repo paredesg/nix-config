@@ -65,7 +65,9 @@ df -h
 
 1. git clone https://github.com/paredesg/nix-config.git /mnt/etc/nixos/nix-config
    cp -r /mnt/etc/nixos/nix-config/* /mnt/etc/nixos/
-
+   nixos-generate-config --root /mnt
+   mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/vm/
+   
 3. Générer les mots de passe hashés (référencés dans `modules/nixos/users.nix`) :
    ```
 

@@ -8,9 +8,9 @@
   services.displayManager.ly.enable = true;
   services.displayManager.defaultSession = "qtile";
 
-  security.polkit.enable = true;
-  services.dbus.enable = true;
-  services.gnome.gnome-keyring.enable = true;
+  #security.polkit.enable = true;
+  #services.dbus.enable = true;
+  #services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
 #    qtile
