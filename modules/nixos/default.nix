@@ -4,6 +4,7 @@
     ./boot.nix
     ./networking.nix
     ./audio.nix
+    ./fonts.nix
     ./users.nix
     ./hardware.nix
     ./desktop/qtile.nix
