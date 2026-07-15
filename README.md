@@ -56,17 +56,9 @@ df -h
 
 ## Prérequis avant premier déploiement
 
-1. Générer le vrai `hardware-configuration.nix` sur chaque machine :
-   ```
-   nixos-generate-config --root /mnt
-   ```
-   puis remplacer le fichier placeholder correspondant dans
-   `hosts/<hostname>/hardware-configuration.nix`.
-
 1. git clone https://github.com/paredesg/nix-config.git /mnt/etc/nixos/nix-config
    cp -r /mnt/etc/nixos/nix-config/* /mnt/etc/nixos/
-   nixos-generate-config --root /mnt
-   mv /mnt/etc/nixos/hardware-configuration.nix /mnt/etc/nixos/hosts/vm/
+   nixos-generate-config --root /mnt --show-hardware-config > /mnt/etc/nixos/hosts/vm/hardware-configuration.nix
    
 3. Générer les mots de passe hashés (référencés dans `modules/nixos/users.nix`) :
    ```
@@ -83,6 +75,9 @@ Pour une gestion plus robuste des secrets, envisager `sops-nix` ou `agenix`.
 
 
 ```
+# Supprimer le flake.lock pour forcer sa régénération (hash du dossier a changé)
+rm -f /mnt/etc/nixos/flake.lock
+
 # Sur aquarius
 nixos-install --root /mnt --flake /mnt/etc/nixos#aquarius
 

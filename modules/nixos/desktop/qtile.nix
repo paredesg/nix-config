@@ -14,7 +14,7 @@
 
   environment.systemPackages = with pkgs; [
 #    qtile
-#    python3Packages.psutil     # requis par les widgets CPU/Memory de qtile
+    python3Packages.psutil     # requis par les widgets CPU/Memory de qtile
 #    rofi
 #    picom
 #    feh

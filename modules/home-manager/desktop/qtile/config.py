@@ -218,11 +218,11 @@ screens = [
         bottom=bar.Bar(
             widgets = [
                 widget.Spacer(length = 8),
-                widget.Image(
-                    filename = "~/.config/qtile/icons/hal-9000-eye.jpg",
-                    scale = "False",
-                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("qtilekeys-yad")},
-                ),
+#                widget.Image(
+#                    filename = "~/.config/qtile/icons/hal-9000-eye.jpg",
+#                    scale = "False",
+#                    mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("qtilekeys-yad")},
+#                ),
                 widget.Prompt(
                     font = "Ubuntu Mono",
                     fontsize=14,
