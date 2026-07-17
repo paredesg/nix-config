@@ -7,4 +7,5 @@
       useInternalView = true;
       confirmView = false;
       confirmEdit = false;};
+  };
 }
