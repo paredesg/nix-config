@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  home-manager.users.${config.user} = { config, ... }: {
+
     home.packages = with pkgs; [
       argocd
       cilium-cli
@@ -15,5 +15,4 @@
       kustomize
       stern
     ];
-  };
 }

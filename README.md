@@ -89,6 +89,10 @@ nixos-install --root /mnt --flake /mnt/etc/nixos#laptop
 # Sur vm
 nixos-install --root /mnt --flake /mnt/etc/nixos#vm
 
+sudo nixos-rebuild switch --flake /etc/nixos#vm
+
+
+
 ```
 
 ## Mise à jour des dépendances (nixpkgs, home-manager)
